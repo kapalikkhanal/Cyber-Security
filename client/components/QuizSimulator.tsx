@@ -1,13 +1,20 @@
 "use client";
 import { useState } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Scenario = {
+  id: number;
+  type: "email" | "chat" | "other";
+  content: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+};
+
 export default function QuizSimulator({
   scenario,
   onNext,
-  showAnswer,
 }: {
-  scenario: any;
+  scenario: Scenario;
   onNext: (isCorrect: boolean) => void;
   showAnswer: boolean;
 }) {

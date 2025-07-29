@@ -14,12 +14,17 @@ export default function EmailScanner() {
 
   const handleScan = async (emailContent: string) => {
     const result = await analyzeEmail(emailContent);
-    setScanResult(result);
+    setScanResult({
+      ...result,
+      status: result.status as "Safe" | "Warning" | "Danger",
+    });
+
     return result;
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      a
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-white mb-3">
           📧 Email Threat Analyzer
@@ -29,16 +34,13 @@ export default function EmailScanner() {
           attempts.
         </p>
       </div>
-
       {/* Scanner Form */}
       <div className="mb-10">
         <ScannerForm
           placeholder="Paste email content here..."
           onScan={handleScan}
-          isTextArea={true}
         />
       </div>
-
       {/* Results Section */}
       {scanResult && (
         <div className="space-y-10">

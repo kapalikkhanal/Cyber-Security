@@ -3,7 +3,17 @@ import { useState } from "react";
 import QuizSimulator from "@/components/QuizSimulator";
 import TrainingProgress from "@/components/TrainingProgress";
 
-const phishingScenarios = [
+type Scenario = {
+  id: number;
+  type: "email" | "chat" | "other";
+  content: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+};
+
+const phishingScenarios: Scenario[] = [
   {
     id: 1,
     type: "email",
